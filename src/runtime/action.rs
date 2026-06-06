@@ -55,6 +55,20 @@ pub trait Action: Send + Sync + 'static {
 		Ok(())
 	}
 
+	/// Fired when the touchscreen above an encoder is tapped or held.
+	///
+	/// `hold` is `true` for a long press rather than a short tap; `tap_pos` is
+	/// the `[x, y]` location of the touch within the touchscreen.
+	async fn touch_tap(
+		&self,
+		_instance: &Instance,
+		_settings: &Self::Settings,
+		_hold: bool,
+		_tap_pos: [u16; 2],
+	) -> Result<()> {
+		Ok(())
+	}
+
 	/// <https://openaction.amankhanna.me/4_clientbound/settings.html#didreceivesettings>
 	async fn did_receive_settings(&self, _instance: &Instance, _settings: &Self::Settings) -> Result<()> {
 		Ok(())
